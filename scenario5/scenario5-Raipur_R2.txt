@@ -1,0 +1,122 @@
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Raipur_R2
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ description DB_SERVER_LAN
+ ip address 59.0.9.1 255.255.255.224
+!
+interface GigabitEthernet0/0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/1/0
+ bandwidth 512
+ ip address 59.0.9.82 255.255.255.252
+ ip nat inside
+!
+interface Serial0/1/1
+ description TO_ISP
+ ip address 201.45.38.1 255.255.255.252
+ ip nat outside
+ clock rate 2000000
+!
+interface Serial0/2/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/2/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ log-adjacency-changes
+ network 59.0.9.0 0.0.0.31 area 0
+ network 59.0.9.80 0.0.0.3 area 0
+ default-information originate
+!
+ip nat pool POOLVLAN1 141.12.2.1 141.12.2.84 netmask 255.255.255.0
+ip nat pool POOLVLAN558 141.12.2.169 141.12.2.254 netmask 255.255.255.0
+ip nat pool POOLVLAN955 141.12.2.85 141.12.2.168 netmask 255.255.255.0
+ip nat inside source list NATACLVLAN1 pool POOLVLAN1
+ip nat inside source list NATACLVLAN558 pool POOLVLAN558
+ip nat inside source list NATACLVLAN955 pool POOLVLAN955
+ip classless
+ip route 0.0.0.0 0.0.0.0 201.45.38.2 
+!
+ip flow-export version 9
+!
+!
+ip access-list standard TELNET_RESTRICT
+ deny 59.0.0.0 0.0.7.255
+ permit any
+ip access-list extended NATACLVLAN1
+ permit ip 59.0.9.64 0.0.0.15 any
+ip access-list extended NATACLVLAN955
+ permit ip 59.0.0.0 0.0.7.255 any
+ip access-list extended NATACLVLAN558
+ permit ip 59.0.9.32 0.0.0.31 any
+!
+banner motd ^CJADE HOANG 103795587 Thu 2:30^C
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ access-class TELNET_RESTRICT in
+ password cisco
+ login
+!
+!
+!
+end
