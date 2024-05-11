@@ -1,0 +1,14 @@
+ip access-list extended ACLVLAN587
+deny tcp 148.57.0.0 0.0.7.255 host 138.80.0.1 eq www
+permit tcp 148.57.0.0 0.0.7.255 host 44.0.0.1 eq www
+deny ip 148.57.0.0 0.0.7.255 host 44.0.0.1
+deny ip 148.57.0.0 0.0.7.255 host 159.23.0.1
+permit ip any any
+
+exit
+
+int g0/0/1.587
+ip access-group ACLVLAN587 in
+
+do sh access-list
+
