@@ -1,0 +1,112 @@
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Mithi_R2
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1.1
+ encapsulation dot1Q 1 native
+ ip address 131.57.3.129 255.255.255.248
+!
+interface GigabitEthernet0/0/1.112
+ encapsulation dot1Q 112
+ ip address 131.57.3.1 255.255.255.192
+!
+interface GigabitEthernet0/0/1.795
+ encapsulation dot1Q 795
+ ip address 131.57.2.1 255.255.255.0
+!
+interface Serial0/1/0
+ bandwidth 128
+ ip address 131.57.3.142 255.255.255.252
+!
+interface Serial0/1/1
+ bandwidth 512
+ ip address 131.57.3.146 255.255.255.252
+!
+interface Serial0/2/0
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Serial0/2/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router eigrp 65
+ passive-interface GigabitEthernet0/0/1.1
+ passive-interface GigabitEthernet0/0/1.112
+ passive-interface GigabitEthernet0/0/1.795
+ network 131.57.3.0 0.0.0.63
+ network 131.57.3.128 0.0.0.7
+ network 131.57.2.0 0.0.0.255
+ network 131.57.3.144 0.0.0.3
+ network 131.57.3.140 0.0.0.3
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^CJADE HOANG 103795587 Thu 2:30^C
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
