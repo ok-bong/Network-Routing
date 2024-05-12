@@ -1,54 +1,42 @@
 # Network Routing Scenarios
 
 ## Overview
-This repository contains 6 scenarios demonstrating the configuration of Cisco routers and switches for a fully functional internal corporate network. Each scenario shows the implementation of dynamic routing protocols - RIP, EIGRP, and OSPF. Additionally, inter-VLAN routing is configured, and each scenario includes a simulation of Internet through an ISP router (using loopback interfaces).
+This repository contains 6 scenarios demonstrating the configuration of Cisco routers and switches for a fully functional internal corporate network using dynamic routing protocols (RIP, EIGRP, OSPF), interVLAN routing, and other advanced networking concepts using Cisco Packet Tracer. Each scenario includes a simulation of an ISP router using a loopback interface to simulate network connectivity to the internet.
 
 VLANs, IP address design, and VLSM calculations are documented in each scenario's Packet Tracer file.
 
+Each folder corresponding to each scenario will contain a .pkt file, configuration of each router/switch, and README file detailing each scenario's requirements.
 
-## General Configuration
-- **Gateway Router**: The gateway router of the internal network has a default route pointing to the ISP, while the ISP router has a single static route directing all traffic to the corporate network's gateway router.
-- **Internal Network Setup**: All internal routers are connected to switches using trunk connections for inter-VLAN routing.
-- **Password**: The password for switches and routers in all scenarios is **cisco**.
+## General Configurations
 
-## Scenarios
+- **Gateway Configuration**: The gateway router of the internal network will have a default route pointing to the ISP, and the ISP will have a single static route directing all traffic to the corporate network to the Corporate Gateway router.
+- **Internal Network Topology**: All internal routers are connected to switches using trunk connections for interVLAN routing.
+- **Switch Port Security**: Implement port security settings on switch access ports. Configure port security with mac address sticky, maximum 4 addresses, and violation protect mode to enhance network security.
+- **Switch Configuration**: If applicable, configure the switch with an enable password of "cisco". Define the necessary VLANs, assign a management interface to VLAN1, set up a default gateway, and enable telnet access with the password "cisco" to facilitate remote management of the switch.
+- **Testing Connectivity**: All necessary tests have been conducted to confirm that PCs have full connectivity between each other and that all devices can communicate properly with other directly connected devices.
 
-### Scenario 1: RIPv2 and Wireless Router Configurations
-- Demonstrates the configuration of RIPv2 routing protocol.
-- Includes configurations for a wireless router to extend network connectivity.
-- Conducted tests to confirm full connectivity between devices.
+## Scenarios Overview
+
+### Scenario 1: RIPv2 and Wireless Router Configuration
+
+Configuring RIPv2 for dynamic routing and setting up a wireless router for network access.
 
 ### Scenario 2: RIPv2 and ACL (Extended)
-- Uses RIPv2 for dynamic routing.
-- Implements Access Control Lists (ACLs) to control traffic flow.
-- Comprehensive testing ensures proper connectivity.
+
+RIPv2 is configured alongside extended ACLs for network security and access control.
 
 ### Scenario 3: EIGRP, ACL (Extended & Standard)
-- Configuration of EIGRP as the dynamic routing protocol.
-- ACLs (extended & standard) are configured for traffic control.
-- Extensive testing validates network connectivity.
+
+EIGRP is implemented as the dynamic routing protocol, and both extended and standard ACLs are used for network security.
 
 ### Scenario 4: OSPF, ACL (Extended & Standard)
-- OSPF is configured as the dynamic routing protocol.
-- ACLs (extended & standard) are employed for security and traffic management.
-- Thorough testing ensures seamless communication.
+
+OSPF is implemented as the dynamic routing protocol, with extended and standard ACLs for network security.
 
 ### Scenario 5: OSPF, ACL (Extended & Standard), DHCP, NAT
-- OSPF is implemented for dynamic routing.
-- Includes ACLs (extended & standard) for security.
-- DHCP and NAT services are configured for address management and internet access.
-- Rigorous testing validates network functionality.
+
+OSPF is configured for dynamic routing, DHCP and NAT are implemented alongside ACLs for network security.
 
 ### Scenario 6: OSPF, DHCP, NAT, ACL (Extended & Standard), PPP and CHAP
-- OSPF is configured as the dynamic routing protocol.
-- DHCP and NAT services are set up for address allocation and internet connectivity.
-- Includes ACLs (extended & standard) for traffic control.
-- Uses PPP and CHAP for secure communication.
-- Thorough testing confirms network integrity.
 
-## Usage
-1. Open the respective Packet Tracer file for each scenario.
-2. Review the configurations and network topology.
-3. Conduct tests as specified in the scenario to verify connectivity.
-4. Explore additional features and technologies implemented in each scenario.
-
+OSPF for dynamic routing, DHCP and NAT for address management, ACLs for network security, and PPP with CHAP for secure authentication.
