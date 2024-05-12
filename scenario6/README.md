@@ -23,12 +23,12 @@ For Scenario 6, DHCP must be configured as follows:
 - The DHCP service should be run on Daspur (not Nagri).
 - The DHCP pools should cover the range of IP addresses for those two VLANs.
 - Exclude the first four IP addresses from being allocated by DHCP.
-- Configure the DHCP helper IP address on Nagri using the `955x` command.
+- Configure the DHCP helper IP address on Nagri using the `ip helper-address` command.
 
 ## NAT Requirements for Scenario
 
 For Scenario 6, NAT must be configured as follows:
-- Use the NAT Public IP Address Pool provided by the ISP of 135.12.64.0/25.
+- Use the NAT Public IP Address Pool provided by the ISP of **135.12.64.0/25**.
 - Divide this pool into 3 sub-pools (do not use VLSM).
 - Allocate these three sub-pools to VLAN1, VLAN955, and VLAN558.
 - Use DHCP overloading when allocating the sub-pools.
